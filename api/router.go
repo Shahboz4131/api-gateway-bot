@@ -33,12 +33,7 @@ func New(option Option) *gin.Engine {
 	})
 
 	api := router.Group("/v1")
-	// api.POST("/tasks", handlerV1.CreateTask)
 	api.GET("/", handlerV1.GetMessage)
-	// api.GET("/tasks", handlerV1.ListTasks)
-	// api.PUT("/tasks/:id", handlerV1.UpdateTask)
-	// api.DELETE("/tasks/:id", handlerV1.DeleteTask)
-	// api.GET("/overduetasks", handlerV1.OverdueTasks)
 
 	url := ginSwagger.URL("swagger/doc.json") // The url pointing to API definition
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
