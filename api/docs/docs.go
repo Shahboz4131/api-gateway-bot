@@ -23,9 +23,9 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/v1/overduetasks": {
+        "/v1/": {
             "get": {
-                "description": "This API for getting list of overdue tasks",
+                "description": "This API for getting message",
                 "consumes": [
                     "application/json"
                 ],
@@ -33,244 +33,18 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "task"
+                    "message"
                 ],
-                "summary": "OverdueTasks",
+                "summary": "GetMessage",
                 "parameters": [
                     {
-                        "description": "taskOverdueRequest",
+                        "description": "messageGetRequest",
                         "name": "request",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Overdue"
+                            "$ref": "#/definitions/models.Message"
                         }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": ""
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/tasks": {
-            "get": {
-                "description": "This API for getting list of tasks",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "task"
-                ],
-                "summary": "ListTasks",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Page",
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "Limit",
-                        "name": "limit",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.ListTasks"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/tasks/": {
-            "post": {
-                "description": "This API for creating a new task",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "task"
-                ],
-                "summary": "CreateTask",
-                "parameters": [
-                    {
-                        "description": "taskCreateRequest",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.Task"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.Task"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/tasks/{id}": {
-            "get": {
-                "description": "This API for getting task detail",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "task"
-                ],
-                "summary": "GetTask",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.Task"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "This API for updating task",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "task"
-                ],
-                "summary": "UpdateTask",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "taskUpdateRequest",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.UpdateTask"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": ""
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "This API for deleting task",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "task"
-                ],
-                "summary": "DeleteTask",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -302,27 +76,13 @@ var doc = `{
                 }
             }
         },
-        "models.ListTasks": {
+        "models.Message": {
             "type": "object",
             "properties": {
-                "tasks": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Task"
-                    }
-                }
-            }
-        },
-        "models.Overdue": {
-            "type": "object",
-            "properties": {
-                "limit": {
-                    "type": "integer"
+                "priority": {
+                    "type": "string"
                 },
-                "page": {
-                    "type": "integer"
-                },
-                "timed": {
+                "text": {
                     "type": "string"
                 }
             }
@@ -332,61 +92,6 @@ var doc = `{
             "properties": {
                 "error": {
                     "$ref": "#/definitions/models.Error"
-                }
-            }
-        },
-        "models.Task": {
-            "type": "object",
-            "properties": {
-                "assignee": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "deadline": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                }
-            }
-        },
-        "models.UpdateTask": {
-            "type": "object",
-            "properties": {
-                "assignee": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "deadline": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
                 }
             }
         }
